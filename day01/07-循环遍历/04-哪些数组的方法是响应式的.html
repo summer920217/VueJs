@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<div id='app'>
+  <ul>
+    <li v-for="item in letters">{{item}}</li>
+  </ul>
+  <button @click="btnClick">按钮</button>
+</div>
+<script src='../js/vue.js'></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      letters:['a','b','c','d','e'],
+    },
+    methods:{
+      btnClick(){
+        // 响应式的方法
+        // 1. push() : 尾部追加元素
+        // this.letters.push('end');
+
+        // 2. pop() : 删除最后一个元素
+        // this.letters.pop();
+
+        // 3. shift() : 删除第一个元素
+        // this.letters.shift();
+
+        // 4. unshift() : 头部追加元素
+        // this.letters.unshift('start');
+
+        // 5. splice() : 删除且追加
+        // 删除元素
+        // this.letters.splice(2);
+        // this.letters.splice(2,2);
+        // 替换元素
+        // this.letters.splice(2,1,'update');
+        // 添加元素
+        // this.letters.splice(2,0,'insert');
+
+        // 6. sort() : 数组排序
+        // this.letters.sort();
+        // 7. reverse() : 数组翻转
+        // this.letters.reverse();
+
+        //---------------------
+        // 注意：通过索引值修改数组中的元素
+        // this.letters[0] = 'bbb';//无响应式
+        // this.letters.splice(0,1,'bbb');//有响应式
+
+        // Vue.set(要修改的对象,索引值,修改后的值)
+        Vue.set(this.letters,0,'bbbb');//响应式
+        
+      }
+    }
+  })
+</script>
+</body>
+</html>

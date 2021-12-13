@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<div id='app'>
+  <!-- 3.使用组件 -->
+  <h3>1.直接用</h3>
+  <my-cpn></my-cpn>
+  <h3>2.嵌套一层</h3>
+  <div>
+    <my-cpn></my-cpn>
+  </div>
+  <h3>3.嵌套二层</h3>
+  <div>
+    <div>
+      <my-cpn></my-cpn>
+    </div>
+  </div>
+</div>
+<script src='../js/vue.js'></script>
+<script>
+  // 1.创建组件构造器对象
+  const cpnC = Vue.extend({
+    template:`
+      <div>
+        <h2>我是标题</h2>  
+        <p>我是内容,哈哈哈啊</p>
+        <p>我是内容,呵呵呵呵</p>
+      </div>
+    `
+  })
+  // 2.注册组件
+  Vue.component('my-cpn',cpnC);
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    }, 
+    methods:{
+    }
+  })
+</script>
+</body>
+</html>

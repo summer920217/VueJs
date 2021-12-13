@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<div id='app'>
+  {{message}}
+  <h3>父组件区域</h3>
+  <h3>num1: {{num1}}</h3>
+  <h3>num2: {{num2}}</h3>
+  <hr>
+  <cpn :snum1="num1" :snum2="num2" @num1change="num1change" @num2change="num2change"></cpn>
+</div>
+
+<!-- 子组件模板 -->
+<template id="cpn">
+  <div>
+    <h3>子组件区域</h3>
+    <h4>props->snum1: {{snum1}}</h4>
+    <h4>props->snum2: {{snum2}}</h4>
+    <hr>
+    <h4>data->dsnum1: {{dsnum1}}</h4>
+    <h4>data->dsnum2: {{dsnum2}}</h4>
+
+    <!-- <p>props->snum1:<input type="text" v-model="snum1"></p>
+    <p>data->dsnum2:<input type="text" v-model="dsnum2"></p> -->
+    <p>
+      data->dsnum1: <input type="text" :value="dsnum1" @input="num1Input">
+    </p>
+    <p>
+      data->dsnum2: <input type="text" :value="dsnum2" @input="num2Input">
+    </p>
+  
+  
+  </div>
+</template>
+<script src='../js/vue.js'></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊',
+      num1:1,
+      num2:0
+    },
+    components:{
+      cpn:{
+        template:'#cpn',
+        props:{
+          snum1:Number,
+          snum2:Number,
+        },
+        data(){
+          return {
+            dsnum1:this.snum1,
+            dsnum2:this.snum2,
+          }
+        },
+        methods:{
+          num1Input(){
+            //1.将input的value赋值到dnumber中
+            this.dsnum1 = event.target.value;
+            //2.为了让父组件可以修改值，发出一个事件
+            this.$emit('num1change',this.dsnum1);
+            //3.同时修改dsnum1的值(dsnum2的100倍)
+            this.dsnum2 = this.dsnum1 * 100;
+            this.$emit('num2change',this.dsnum2);
+          },
+          num2Input(){
+            //1.将input的value赋值到dnumber中
+            this.dsnum2 = event.target.value;
+            //2.为了让父组件可以修改值，发出一个事件
+            this.$emit('num2change',this.dsnum2);
+            //3.同时修改dsnum1的值(dsnum2的100倍)
+            this.dsnum1 = this.dsnum2 / 100;
+            this.$emit('num1change',this.dsnum1);
+          }
+        }
+      }
+    },
+    methods:{
+      num1change(value){
+        this.num1 = parseFloat(value);
+      },
+      num2change(value){
+        this.num2 = parseFloat(value);
+      }
+    }
+  })
+</script>
+</body>
+</html>

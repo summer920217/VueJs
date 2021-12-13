@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<div id='app'>
+  <cpn @increment="changeTotal" @decrement="changeTotal"></cpn>
+  <h3>counter:{{counter}}</h3>
+</div>
+
+<!-- 子组件模板 -->
+<template id="cpn">
+  <div>
+    <button @click="increment">+1</button>
+    <button @click="decrement">-1</button>
+    <h3>total: {{total}}</h3>
+  </div>
+</template>
+
+<script src='../js/vue.js'></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊',
+      counter:0
+    },
+    components:{
+      cpn:{
+        template:'#cpn',
+        data(){
+          return {
+            total:0
+          }
+        },
+        methods:{
+          increment(){
+            this.total++;
+            this.$emit('increment',this.total);
+          },
+          decrement(){
+            this.total--;
+            this.$emit('decrement',this.total);
+          }
+        },
+      }
+
+    },
+    methods:{
+      changeTotal(total){
+        this.counter = total;
+      }
+    }
+  })
+</script>
+</body>
+</html>

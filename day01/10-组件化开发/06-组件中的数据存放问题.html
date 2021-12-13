@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<div id='app'>
+  <cpn1></cpn1>  
+  <cpn2></cpn2>  
+</div>
+
+
+<!-- 分离模板1： -->
+<script type="text/x-template" id="cpn1">
+  <ul>
+    <li>分离模板1</li>
+    <li>分离模板1</li>
+    <li>{{title}}</li>
+  </ul>
+</script>
+
+
+<!-- 分离模板2： -->
+<template id="cpn2">
+  <div>
+    <h3>分离模板2</h3>
+  </div>
+</template>
+<script src='../js/vue.js'></script>
+<script>
+  //1. 注册一个全局组件
+  Vue.component('cpn1',{
+    template:'#cpn1',
+    data(){
+      return {
+        title:'abc'
+      }
+    }
+  })
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    components:{
+      cpn2:{
+        template:'#cpn2'
+      }
+    },
+    methods:{
+    }
+  })
+</script>
+</body>
+</html>

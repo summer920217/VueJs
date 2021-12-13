@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<div id='app'>
+  <cpn ref="s1"></cpn>
+  <cpn></cpn>
+  <cpn></cpn>
+  <button @click="btnClick()">按钮</button>
+</div>
+
+<template id="cpn">
+  <div>
+    <h3>我是子组件</h3>
+  </div>
+</template>
+<script src='../js/vue.js'></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    methods:{
+      btnClick(){
+        // 1. 访问子组件： $children [数组类型]
+        // console.log(this.$children);
+        // for(let c of this.$children){
+        //   console.log(c.name);
+        //   c.showMessage();
+        // }
+        // 第三个组件信息(下标可能会变)
+        console.log(this.$children[2].name);
+
+        // 2. $refs => {对象类型},默认是一个空对象，要在标签上加ref='自定义'
+        console.log(this.$refs);
+      }
+    },
+    components:{
+      cpn:{
+        template:'#cpn',
+        data(){
+          return {
+            name:'apple'
+          }
+        },
+        methods:{
+          showMessage(){
+            console.log('子组件showMessage');
+          }
+        }
+      },
+    }
+  })
+</script>
+</body>
+</html>

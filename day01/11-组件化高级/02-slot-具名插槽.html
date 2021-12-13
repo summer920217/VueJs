@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<div id='app'>
+  <h3>导航</h3>
+  <navbar>
+    <span slot="left"><button><</button></span>
+    <span slot="center">菜单</span>
+    <span slot="right">展开</span>
+  </navbar>
+</div>
+
+<template id="navbar">
+  <div>
+    <slot name="left">左侧</slot>
+    <slot name="center">中间</slot>
+    <slot name="right">右侧</slot>
+  </div>
+</template>
+<script src='../js/vue.js'></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    methods:{
+    },
+    components:{
+      navbar:{
+        template:'#navbar'
+      }
+    }
+  })
+</script>
+</body>
+</html>

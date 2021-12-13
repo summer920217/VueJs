@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<div id='app'>
+  <cpn :c-message="message" :c-news-list="news"></cpn>
+</div>
+<template id="cpn">
+  <div>
+    <h3>这里是cpn子组件</h3>
+    <h2>{{cMessage}}</h2>
+    <ul>
+      <li v-for="item in cNewsList">
+        {{item}}
+      </li>
+    </ul>
+  </div>
+</template>
+<script src='../js/vue.js'></script>
+<script>
+  // 子组件
+  const cpn = {
+    template:'#cpn',
+    props:{
+      cMessage:{
+        type:String,
+        default:'暂无信息'
+      },
+      cNewsList:{
+        type:Array,
+        default(){
+          return ['暂无新闻']
+        }
+      }
+    }
+  }
+
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊',
+      news:['百度','新浪','网易','腾讯','hao123']
+    },
+    components:{
+      cpn
+    },
+    methods:{
+    }
+  })
+</script>
+</body>
+</html>

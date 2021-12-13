@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<h2>实例1</h2>
+<div id='app'>
+  {{message}}
+  <comm-cpn></comm-cpn>
+  <my-cpn></my-cpn>
+</div>
+
+<h2>实例2</h2>
+<div id="app2">
+  {{message}}
+  <comm-cpn></comm-cpn>
+  <my-cpn></my-cpn>
+</div>
+<script src='../js/vue.js'></script>
+<script>
+  //1.创建组件构造器
+  const cpn = Vue.extend({
+    template:`
+      <ul>
+        <li>第一行</li>  
+        <li>第二行</li>  
+        <li>第三行</li>  
+        <li>第四行</li>  
+      </ul>
+    `
+  });
+  // 2.注册组件(全局组件)
+  Vue.component('comm-cpn',cpn);
+
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'实例1的内容区域'
+    },
+    components:{
+     "my-cpn":cpn
+    },
+    methods:{
+    }
+  })
+  const app2 = new Vue({
+    el:'#app2',
+    data:{
+      message:'实例2的内容区域'
+    },
+    methods:{
+    }
+  })
+</script>
+</body>
+</html>

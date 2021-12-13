@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<div id='app'>
+  <!-- 2.把父组件数据绑定到子组件上 -->
+  <cpn v-bind:cmessage="message" ></cpn>
+</div>
+
+<!-- 组件模板 -->
+<template id="cpn">
+  <div>
+    <h3>这里是子组件cpn</h3>
+    <!-- 3.使用从父组件传递过来的数据信息 -->
+    <p>{{cmessage}}</p>
+    <ul>
+      <li v-for="item in cmovies">{{item}}</li>
+    </ul>
+  </div>
+</template>
+<script src='../js/vue.js'></script>
+<script>
+  //父子通信: 父传子 props
+
+  // 子组件
+  const cpn = {
+    template:'#cpn',
+    //1.子组件设置props接收父组件数据
+    //1-1)方式1：字符串数组 
+    // props:['cmessage','cmovies'],
+    //1-2)方式2：对象(可设类型，默认值等)
+    props:{
+      // 1.类型限制
+      // cmessage:String,
+      // cmovies:Array,
+
+      // 2.提供一些默认值,以及必传值
+      cmessage:{
+        type:String,
+        default:'默认信息',
+        required:true
+      },
+      cmovies:{
+        type:Array,
+        default(){
+          return ['aa','bb']
+        },
+      }
+
+    },
+    data(){
+      return {}
+    }
+  }
+
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊',
+      movies:['绿皮书','摔跤吧爸爸','当幸福来敲门','楚门的世界']
+    },
+    components:{
+      cpn
+    },
+    methods:{
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<div id='app'>
+  <cpn></cpn>  
+  <cpn>列表展示</cpn> 
+  <hr>
+  <cpn>
+    <!-- 目的是获取子组件中的pLanguage，重新排列展示 -->
+    <!-- vue2 -->
+    <!-- <template slot-scope="slot"> -->
+    <!-- vue3 --> 
+    <template v-slot:list="slotp">
+      <span>{{slotp.data.join(' - ')}}</span> <br>
+    </template>
+    
+    <template v-slot:classname="slot">
+      <label v-for="item in slot.data">
+        <input type="radio" >{{item}}
+      </label>
+    </template>
+  </cpn> 
+</div>
+
+
+<template id="cpn" name="cpn">
+  <div>
+    <!-- 插槽 -->
+    <!-- slot自定义属性，传递数据给父组件 -->
+    <slot :data="pLanguage" name="list">
+      <ul>
+        <li v-for="item in pLanguage">
+          {{item}}
+        </li>
+      </ul>
+    </slot>
+    班级: 
+    <slot :data="className" name="classname">
+      <select>
+        <option v-for="item in className">{{item}}</option>
+      </select>
+    </slot>
+  </div>
+</template>
+<script src='../js/vue.js'></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    methods:{
+    },
+    components:{
+      cpn:{
+        template:'#cpn',
+        data(){
+          return {
+            pLanguage:['java','c++','python','go','php'],
+            className:['一班','二班','三班','四班']
+          }
+        }
+
+      }
+    }
+  })
+</script>
+</body>
+</html>

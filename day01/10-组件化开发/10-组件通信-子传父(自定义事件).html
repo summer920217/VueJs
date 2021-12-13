@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<div id='app'>
+  <!-- 2）父组件绑定事件，并做处理 -->
+  <cpn @item-click="itemClick"></cpn>
+</div>
+
+<!-- 子组件模板 -->
+<template id="cpn">
+  <div>
+    <h3>菜单分类</h3>
+    <ul>
+      <li v-for="item in categories">
+        <a href="#" v-on:click="btnClick(item)">{{item.name}}</a>
+      </li>
+    </ul>
+  </div>
+</template>
+<script src='../js/vue.js'></script>
+<script>
+  // 子传父：子组件派发自定义事件给父组件
+  // this.$emit('事件名',参数)
+
+  // 子组件
+  const cpn = {
+    template:'#cpn',
+    data(){
+      return {
+        categories:[
+          {id:'aaa',name:'热门推荐'},
+          {id:'bbb',name:'手机数码'},
+          {id:'ccc',name:'家用家电'},
+          {id:'ddd',name:'电脑办公'},
+        ]
+      }
+    },
+    methods:{
+      btnClick(item){
+        console.log('子组件查询点击的item')
+        console.log(item);
+        //点击a，1)派发 (事件名,参数) 给父组件
+        this.$emit('item-click',item);
+      }
+    }
+  }
+
+
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    components:{
+      cpn
+    },
+    methods:{
+      itemClick(item){
+        console.log('父组件接收到的item')
+        console.log(item)
+      }
+    }
+  })
+</script>
+</body>
+</html>

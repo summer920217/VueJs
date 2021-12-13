@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+</head>
+<body>
+<div id='app'>
+<!-- 修饰符的使用 -->
+<!-- 1) .stop ：阻止冒泡 -->
+<div @click="divClick">
+  aaaaaaa
+  <button @click.stop="btnClick">按钮</button>
+</div>
+<!-- 2) .prevent ：阻止默认行为 -->
+<form action="index.php">
+  <input type="submit" value="提交" @click.prevent="subClick()">
+</form>
+<!-- 3) 监听某个键盘的键帽 -->
+<!-- .enter : 监听enter回车 -->
+<input type="text" @keyup.enter="keyUp">
+
+<!-- 4) .once : 只触发一次 -->
+<button @click.once="one">按钮只能点一次</button>
+
+</div>
+<script src='../js/vue.js'></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    methods:{
+      divClick(){
+        console.log('1 点击了divClick');
+      },
+      btnClick(){
+        console.log('2 点击了btnClick');
+      },
+      subClick(){
+        console.log('表单准备提交了');
+      },
+      keyUp(){
+        console.log('keyUp');
+      },
+      one(){
+        console.log('你已领取奖金！')
+      }
+    }
+  })
+</script>
+</body>
+</html>
