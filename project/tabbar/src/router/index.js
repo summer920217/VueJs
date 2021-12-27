@@ -1,10 +1,42 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
-Vue.use(Router)
 
-export default new Router({
-  routes: [
-    
-  ]
+// 懒加载
+const Home = () => import ('../views/home/Home.vue')
+const Category = () => import ('../views/category/Category.vue')
+const Car = () => import ('../views/car/Car.vue')
+const Profile = () => import ('../views/profile/Profile.vue')
+
+
+
+// 1.安装插件
+Vue.use(VueRouter)
+// 2.初始化实例
+const routes = [
+  {
+    path:'',
+    redirect:'/home'
+  },
+  {
+    path:'/home',
+    component:Home
+  },
+  {
+    path:'/category',
+    component:Category
+  },
+  {
+    path:'/car',
+    component:Car
+  },
+  {
+    path:'/profile',
+    component:Profile
+  },
+]
+const router = new VueRouter({
+  routes
 })
+// 3.导出路由
+export default router
