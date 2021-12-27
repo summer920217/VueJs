@@ -1,33 +1,36 @@
 <template>
-  <div id="app">
-    <div id="tab-bar">
-      <div class="tab-bar-item">首页</div>
-      <div class="tab-bar-item">分类</div>
-      <div class="tab-bar-item">购物车</div>
-      <div class="tab-bar-item">我的</div>
-    </div>
+  <div>
+    <tab-bar>
+      <tab-bar-item>
+        <img slot="item-icon" src="./assets/img/tabbar/1-1.png">
+        <span slot="item-text">首页</span>
+      </tab-bar-item>
+      <tab-bar-item>
+        <img slot="item-icon" src="./assets/img/tabbar/2-1.png">
+        <span slot="item-text">分类</span>
+      </tab-bar-item>
+      <tab-bar-item>
+        <img slot="item-icon" src="./assets/img/tabbar/3-1.png">
+        <span slot="item-text">购物车</span>
+      </tab-bar-item>
+      <tab-bar-item>
+        <img slot="item-icon" src="./assets/img/tabbar/4-1.png">
+        <span slot="item-text">我的</span>
+      </tab-bar-item>
+    </tab-bar>
   </div>
 </template>
 
 <script>
+import TabBarItem from './components/tabbar/TabBarItem.vue'
+import TabBar from './components/tabbar/TabBar.vue'
 export default {
-  name: 'App'
+  components: { TabBar, TabBarItem },
+  name: 'App',
+ 
 }
 </script>
 
 <style>
-@import url('./assets/css/base.css');
-#tab-bar{
-  background: #f6f6f6;
-  display: flex;
-  position: fixed;
-  left: 0;right: 0;
-  bottom: 0;
-  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.08);
-}
-.tab-bar-item{
-  flex-grow: 1;
-  text-align: center;
-  height: 49px;
-}
+
 </style>
