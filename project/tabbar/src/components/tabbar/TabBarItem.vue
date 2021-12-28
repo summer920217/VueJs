@@ -6,7 +6,7 @@
       <div v-else>
         <slot name="item-icon-active"></slot>
       </div>
-      <div :class="{active:isActive}">
+      <div :style="active">
         <slot name="item-text"></slot>
       </div>
       <!-- <img src="../../assets/img/tabbar/1-1.png"> -->
@@ -18,11 +18,24 @@
 export default {
   name:'TabBarItem',
   props:{
-    path:String
+    path:String,
+    activeColor:String
   },
   data() {
     return {
-      isActive:true
+      // isActive:true
+    }
+  },
+  computed:{
+    isActive(){
+      console.log(this.path);
+      console.log(this.$route.path);
+      // 若：目标路由和当前路由一致,才处于活跃状态
+      return this.$route.path.indexOf(this.path) !== -1
+    },
+    active(){
+      console.log(this.isActive)
+      return this.isActive ? {color:this.activeColor} : {}
     }
   },
   methods: {
@@ -48,5 +61,5 @@ export default {
   margin:3px auto 2px;
 }
 
-.active{color:#1296db;}
+/* .active{color:#1296db;} */
 </style>
