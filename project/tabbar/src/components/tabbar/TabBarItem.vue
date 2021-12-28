@@ -28,19 +28,19 @@ export default {
   },
   computed:{
     isActive(){
-      console.log(this.path);
-      console.log(this.$route.path);
+      // console.log(this.path);
+      // console.log(this.$route.path);
       // 若：目标路由和当前路由一致,才处于活跃状态
       return this.$route.path.indexOf(this.path) !== -1
     },
     active(){
-      console.log(this.isActive)
+      // console.log(this.isActive)
       return this.isActive ? {color:this.activeColor} : {}
     }
   },
   methods: {
     tabbarclick(){
-      console.log('click')
+      // console.log('click')
       this.$router.push(this.path)
     }
   },
