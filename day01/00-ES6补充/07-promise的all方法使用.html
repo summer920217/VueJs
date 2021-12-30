@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+// 同时多个异步请求
+
+Promise.all([
+  //异步请求1：
+  new Promise((resolve,reject) => {
+    setTimeout(()=>{
+      resolve({name:'灶门炭治郎',age:15});
+    },2000)
+  }),
+  // 异步请求2:
+  new Promise((resolve,reject) => {
+    setTimeout(()=>{
+      resolve({name:'灶门弥豆子',age:13});
+    },1000)
+  })
+]).then(results=>{
+  console.log(results)
+})
+
+
+
+
+
+
+</script>  
+</body>
+</html>
