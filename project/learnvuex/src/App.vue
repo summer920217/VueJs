@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div>当前计数：{{$store.state.counter}}</div>
-    <button @click="counter++">+1</button>
-    <button @click="counter--">-1</button>
+    <button @click="addtion">+1</button>
+    <button @click="substraction">-1</button>
 
     <helloVuex :counter="counter"></helloVuex>
   </div>
@@ -16,6 +16,14 @@ export default {
   data() {
     return {
       counter:0
+    }
+  },
+  methods: {
+    addtion(){
+      this.$store.commit('increment')
+    },
+    substraction(){
+      this.$store.commit('decrement')
     }
   },
 

@@ -8,10 +8,15 @@ const store = new Vuex.Store({
   state:{
     counter:100
   },
-  mutations:{
-
+  mutations:{//同步
+    increment(state){
+      state.counter++
+    },
+    decrement(state){
+      state.counter--
+    },
   },
-  actions:{
+  actions:{//异步
 
   },
   getters:{
