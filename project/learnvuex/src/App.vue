@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div>当前计数：{{counter}}</div>
+    <div>当前计数：{{$store.state.counter}}</div>
     <button @click="counter++">+1</button>
     <button @click="counter--">-1</button>
 
