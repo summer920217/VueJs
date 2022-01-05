@@ -8,8 +8,8 @@
     <!-- getters -->
     <h3>counter的2倍：{{$store.getters.powerCounter}}</h3>
     <div>
-      <h3>年龄大于15的柱</h3>
-      <table border="1" bordercolor='#ccc' cellspacing=0 cellpadding=8>
+      <h3>年龄大于15的柱: 数目->{{$store.getters.more15stuLen}}</h3>
+      <table border="1" bordercolor='red' cellspacing=0 cellpadding=8>
         <tr>
           <th>id</th>
           <th>name</th>
@@ -23,6 +23,24 @@
         </tr>
       </table>
     </div>
+
+    <div>
+      <h3>年龄大于指定值16的柱</h3>
+      <table border="1" bordercolor='red' cellspacing=0 cellpadding=8>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>age</th>
+        </tr>
+        <tr v-for="(v,k) in $store.getters.getStuById(16)">
+          <!-- {{v}} -->
+          <td v-for="value in v">
+            {{value}}
+          </td>
+        </tr>
+      </table>
+    </div>
+
     <hr>
     <h2>----------helloVuex-----------</h2>
     <helloVuex :counter="counter"></helloVuex>

@@ -34,9 +34,20 @@ const store = new Vuex.Store({
     //获取counter的2次方
     powerCounter(state){
       return Math.pow(state.counter,2)
-    },
+    }, 
+    // 获取年龄》15的人
     more15stu(state){
       return state.stus.filter(s=> s.age>15)
+    },
+    // 获取年龄》15的人的数目
+    more15stuLen(state,getters){
+      return getters.more15stu.length
+    },
+    //获取 指定年龄的学生信息
+    getStuById(state){
+      return age=>{
+        return state.stus.filter(s=>s.age>age)
+      }
     }
 
   },
