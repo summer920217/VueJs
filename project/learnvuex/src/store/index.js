@@ -6,7 +6,18 @@ Vue.use(Vuex)
 // 2. 创建对象
 const store = new Vuex.Store({
   state:{
-    counter:100
+    counter:100,
+    stus:[
+      {id:110,name:'炎柱·炼狱杏寿郎',age:15},
+      {id:111,name:'岩柱·悲鸣屿行冥',age:18},
+      {id:112,name:'风柱·不死川实弥',age:14},
+      {id:113,name:'水柱·富冈义勇',age:17},
+      {id:114,name:'蛇柱·伊黑小芭内',age:13},
+      {id:114,name:'霞柱·时透无一郎',age:16},
+      {id:114,name:'恋柱·甘露寺蜜璃',age:13},
+      {id:114,name:'音柱·宇髓天元',age:15},
+      {id:114,name:'虫柱·蝴蝶忍',age:16}
+    ]
   },
   mutations:{//同步
     increment(state){
@@ -19,7 +30,14 @@ const store = new Vuex.Store({
   actions:{//异步
 
   },
-  getters:{
+  getters:{// 等同于computed
+    //获取counter的2次方
+    powerCounter(state){
+      return Math.pow(state.counter,2)
+    },
+    more15stu(state){
+      return state.stus.filter(s=> s.age>15)
+    }
 
   },
   modules:{
