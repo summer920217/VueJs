@@ -4,6 +4,9 @@
     <div>当前计数：{{$store.state.counter}}</div>
     <button @click="addtion">+1</button>
     <button @click="substraction">-1</button>
+    <button @click="mulnum(5)">*5</button>
+    <button @click="mulnum(10)">*10</button>
+    <button @click="add">添加信息</button>
 
     <!-- getters -->
     <h3>counter的2倍：{{$store.getters.powerCounter}}</h3>
@@ -63,7 +66,15 @@ export default {
     },
     substraction(){
       this.$store.commit('decrement')
+    },
+    mulnum(num){
+      // num -> payload 负载/载荷
+      this.$store.commit('mul',num)
+    },
+    add(){
+      this.$store.commit('addUser',{id:1110,name:'我妻善逸',age:18})
     }
+
   },
 
 }

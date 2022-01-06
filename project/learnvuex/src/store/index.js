@@ -26,6 +26,14 @@ const store = new Vuex.Store({
     decrement(state){
       state.counter--
     },
+    // 乘法：乘以任意数值
+    mul(state,num){
+      state.counter *= num
+    },
+    //添加对象
+    addUser(state,payload){
+      state.stus.push(payload)
+    }
   },
   actions:{//异步
 
