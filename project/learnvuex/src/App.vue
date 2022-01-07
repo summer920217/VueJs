@@ -69,7 +69,13 @@ export default {
     },
     mulnum(num){
       // num -> payload 负载/载荷
-      this.$store.commit('mul',num)
+      // 1.提交风格1
+      // this.$store.commit('mul',num)
+      // 2.提交风格2
+      this.$store.commit({
+        type:'mul',
+        num
+      })
     },
     add(){
       this.$store.commit('addUser',{id:1110,name:'我妻善逸',age:18})
