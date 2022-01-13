@@ -17,7 +17,12 @@ const store = new Vuex.Store({
       {id:114,name:'恋柱·甘露寺蜜璃',age:13},
       {id:114,name:'音柱·宇髓天元',age:15},
       {id:114,name:'虫柱·蝴蝶忍',age:16}
-    ]
+    ],
+    person:{
+      name:'吾咔呼世晴',
+      age:30,
+      gender:'男'
+    }
   },
   mutations:{//同步
     increment(state){
@@ -34,6 +39,16 @@ const store = new Vuex.Store({
     //添加对象
     addUser(state,payload){
       state.stus.push(payload)
+    },
+    //修改值
+    updatePerson(state){
+      state.person.name = '东野圭吾' 
+      state.person.country = 'japan' 
+      state.person.height = 175 
+
+      Vue.set(state.person,'address','东京')
+      delete state.person.age
+      Vue.delete(state.person,'gender')
     }
   },
   actions:{//异步

@@ -44,6 +44,9 @@
       </table>
     </div>
 
+    <h3>person</h3>
+    <p style="color:red">{{$store.state.person}}</p>
+    <button @click="updatePerson">修改值</button>
     <hr>
     <h2>----------helloVuex-----------</h2>
     <helloVuex :counter="counter"></helloVuex>
@@ -79,6 +82,9 @@ export default {
     },
     add(){
       this.$store.commit('addUser',{id:1110,name:'我妻善逸',age:18})
+    },
+    updatePerson(){
+      this.$store.commit('updatePerson')
     }
 
   },

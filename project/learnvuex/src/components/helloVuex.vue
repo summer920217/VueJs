@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h3>person</h3>
+    <p style="color:blue">{{$store.state.person}}</p>
     <h3>{{$store.state.counter}}</h3>
     <h3>counter的2倍：{{$store.getters.powerCounter}}</h3>
     <h3>computed：{{powCounter}} </h3>
