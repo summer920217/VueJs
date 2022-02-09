@@ -55,6 +55,7 @@
 
 <script>
 import helloVuex from './components/helloVuex.vue'
+import {Increment} from './store/mutations-types'
 export default {
   name: 'App',
   components:{helloVuex},
@@ -65,7 +66,7 @@ export default {
   },
   methods: {
     addtion(){
-      this.$store.commit('increment')
+      this.$store.commit(Increment)
     },
     substraction(){
       this.$store.commit('decrement')
